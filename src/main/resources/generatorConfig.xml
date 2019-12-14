@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <properties resource="application.properties"/>
+    <classPathEntry location="F:\repository\com\oracle\ojdbc6\11.1.0.6.0\ojdbc6-11.1.0.6.0.jar"/>
+    <context id="context">
+        <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
+        一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->
+        <property name="autoDelimitKeywords" value="true"/>
+        <!-- 生成的Java文件的编码-->
+        <property name="javaFileEncoding" value="utf-8"/>
+        <!-- 格式化java代码-->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码-->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 注释 -->
+        <commentGenerator>
+            <!-- 是否取消注释 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否生成注释代时间戳-->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection connectionURL="${datasource.local.url}"
+                        driverClass="${datasource.local.driver-class-name}" userId="${datasource.local.username}" password="${datasource.local.password}"/>
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!--
+                true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+                false：默认,
+                   scale>0;length>18：使用BigDecimal;
+                   scale=0;length[10,18]：使用Long；
+                   scale=0;length[5,9]：使用Integer；
+                   scale=0;length<5：使用Short；
+             -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.tulip.code.beans" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="com.tulip.code.mapper.xml.local" targetProject="src/main/java"/>
+        <javaClientGenerator targetPackage="com.tulip.code.mapper.local" targetProject="src/main/java" type="XMLMAPPER"/>
+        <table tableName="TEMPLATE_USER" domainObjectName="User"
+               enableCountByExample="false" enableUpdateByExample="flase" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>
