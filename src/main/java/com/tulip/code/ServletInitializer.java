@@ -7,7 +7,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * 服务器启动初始化spring容器
  */
-@EnableSwagger2
+@EnableSwagger2（）
 public class ServletInitializer extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
